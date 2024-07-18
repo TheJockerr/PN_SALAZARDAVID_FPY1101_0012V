@@ -1,11 +1,18 @@
-import random
+import random, csv
 from statistics import geometric_mean
 trabajadores = [ 'Juan Pérez','María García','Carlos López','Ana Martínez','Pedro Rodríguez','Laura Hernández','Miguel Sánchez','Isabel Gómez','Francisco Díaz', 'Elena Fernández']
 trabajadoresConSaldo = {}
+Reportefinal={}
 def menu():
     print('-'*39)
     print('-'*10,'Analisis de datos','-'*10)
     print('-'*39)
+    print('1. Asignar sueldos aleatorios')
+    print('2. Clasificar sueldos')
+    print('3. Ver estadísticas.')
+    print('4. Reporte de sueldos')
+    print('5. Salir del programa')
+
 
 def Opuno():
     for i in trabajadores:
@@ -64,21 +71,47 @@ def Optres(tipo):
             SaldoFinality=0
     print('\n- ',a,SaldoFinality)
 def Opcuatro():
-    
-    
+    for emple, sald in trabajadoresConSaldo.items():
+        Reportefinal[emple]=[sald,round(sald*0.07),round(sald*0.12),sald-round(sald*0.07+sald*0.12)]
+        bla={'Nombre empleado': ['Sueldo base','Descuento Salud','Descuento AFP','Sueldo Liquido']}
+        print(bla)
+        print(Reportefinal)
+        report=Reportefinal.items()
+        with open("Reporte Financiero.csv", mode="w", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerows(report)
+        print("\nReporte guardado exitosamente...")
+        print("\nReporte Financiero: ")
+        with open('Reporte Financiero.csv', mode='r', newline='') as file:
+            reader = csv.reader(file)
+            rows = list(reader)
+        for row in rows:
+            print(row)
 
 
 
-menu()
-Opuno()
-print('-')
-acumulador=0
-Opdos('a')
-Opdos('b')
-Opdos('c')
-print('\nTOTAL SUELDOS: $', acumulador)
-print('-')
-Optres(1)
-Optres(2)
-Optres(3)
-Optres(4)
+while True:
+    menu()
+    e=int(input("Ingrese una opcion: "))
+    if e == 1:
+        Opuno()
+    elif e ==2:
+        acumulador=0
+        Opdos('a')
+        Opdos('b')
+        Opdos('c')
+        print('\nTOTAL SUELDOS: $', acumulador)
+    elif e == 3:
+        Optres(1)
+        Optres(2)
+        Optres(3)
+        Optres(4)
+    elif e == 4:
+        Opcuatro()
+    elif e == 5:
+        print('Saliendo del programa...')
+        print("David Salazar")
+        print('22.082.698-8')
+        break
+    else:
+        print("Eleccion incorrecta...")
