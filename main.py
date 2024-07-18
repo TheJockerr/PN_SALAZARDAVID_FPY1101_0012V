@@ -35,24 +35,22 @@ def Opdos(tipo):
                 clasifisueldos[clientes]=sueldos
                 contador=contador+1
                 acumulador=acumulador+sueldos
-    print("Sueldos ", text, contador)
+    print("\nSueldos ", text, contador)
     print('\nNombre empleado     Sueldo')
     for a,b in clasifisueldos.items():
         aa=len(a)
         aa=18-aa
         print(a,' '*aa,'$',b)
-    print('\nTOTAL SUELDOS: ', acumulador)
+    
     
 
 
 
 menu()
 Opuno()
+print('-')
 acumulador=0
-print('-')
 Opdos('a')
-print('-')
 Opdos('b')
-print('-')
 Opdos('c')
-print(acumulador)
+print('\nTOTAL SUELDOS: $', acumulador)
