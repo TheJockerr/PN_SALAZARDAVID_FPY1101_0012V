@@ -17,8 +17,7 @@ def menu():
 def Opuno():
     for i in trabajadores:
         trabajadoresConSaldo[i] = random.randrange(300000,2500000,510)
-    print(trabajadores)
-    print(trabajadoresConSaldo)
+    print('Trabajadores añadidos exitosamente')
 
 def Opdos(tipo):
     contador=0
